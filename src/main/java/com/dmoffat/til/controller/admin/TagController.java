@@ -102,10 +102,5 @@ public class TagController {
 		m.addAttribute("tags", tagService.list());
 
 		return "/admin/tag/list-tag";
-	}
-	
-	
-	
-	
-	
+	}	
 }

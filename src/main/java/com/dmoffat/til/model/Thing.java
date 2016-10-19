@@ -1,22 +1,28 @@
 package com.dmoffat.til.model;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
 
 /**
- * A Thing can be anything, from a fun fact, to a life lesson. 
+ * A Thing can be anything, from a fun fact, to a life lesson.
+ * 
  * @author danielmoffat
  *
  */
@@ -31,12 +37,16 @@ public class Thing implements Serializable {
 	private Long id;
 
 	// Prevent this value from being included in the INSERT statement
-	@Column(name="added", insertable=false)
+	@Column(name = "added", insertable = false)
 	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
 	private DateTime added;
 
 	@NotEmpty
 	private String text = "";
+
+	@ManyToMany(cascade=CascadeType.ALL)
+	@JoinTable(name = "thing_tag", joinColumns = @JoinColumn(name = "thing_id"), inverseJoinColumns = @JoinColumn(name = "tag_id"))
+	private List<Tag> tags;
 
 	public Thing() {
 
@@ -49,7 +59,7 @@ public class Thing implements Serializable {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
+
 	public DateTime getAdded() {
 		return added;
 	}
@@ -64,7 +74,15 @@ public class Thing implements Serializable {
 
 	public void setText(String text) {
 		this.text = text;
-	}	
+	}
+	
+	public List<Tag> getTags() {
+		return tags;
+	}
+
+	public void setTags(List<Tag> tags) {
+		this.tags = tags;
+	}
 
 	@Override
 	public String toString() {
@@ -75,6 +93,8 @@ public class Thing implements Serializable {
 		builder.append(DateTimeFormat.forStyle("MM").print(added));
 		builder.append(", text=");
 		builder.append(text);
+		builder.append(", tags=");
+		builder.append(tags != null ? tags : "none");
 		builder.append("]");
 		return builder.toString();
 	}

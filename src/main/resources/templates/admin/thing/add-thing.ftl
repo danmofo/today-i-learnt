@@ -12,6 +12,14 @@
 			<input name="${spring.status.expression}" value="${spring.status.value}" type="text" class="form-control" id="${spring.status.expression}" />
 			<#list spring.status.errorMessages as error> <div class="alert alert-danger">${error}</div><#else></#list>
 		</div>
+
+		<@spring.bind "thing.tags" />
+		<div class="form-group">
+			<label for="${spring.status.expression}">Tags</label>
+			${spring.status}
+			<input name="${(spring.status.expression)!''}" value="${(spring.status.value)!''}" type="text" class="form-control" id="${spring.status.expression}" />
+			<#list spring.status.errorMessages as error> <div class="alert alert-danger">${error}</div><#else></#list>
+		</div>
 		
 		<button class="btn btn-lg btn-primary" type="submit">Add</button>
 	</form>
