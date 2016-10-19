@@ -1,11 +1,7 @@
 <#import "../layout/admin-layout.ftl" as layout>
 <@layout.adminLayout>
   
-	<h1>Index</h1>
-
-
-
-
+	<p>Welcome to the administration area.</p>
 
 </@layout.adminLayout>
 

@@ -19,6 +19,13 @@
 						<li><a href="/admin/thing/list">List</a></li>
 					</ul>
 				</li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Tag <b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="/admin/tag/add">Add</a></li>
+						<li><a href="/admin/tag/list">List</a></li>
+					</ul>
+				</li>
 			</ul>
 	</div>
 </nav>

@@ -2,7 +2,7 @@
 <#import "/spring.ftl" as spring />
 <@layout.adminLayout>
   
-<h1>List</h1>
+<h1>Listing all things</h1>
 
 <table class="table table-striped">
 	<thead>

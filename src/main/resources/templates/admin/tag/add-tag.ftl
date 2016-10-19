@@ -2,13 +2,13 @@
 <#import "/spring.ftl" as spring />
 <@layout.adminLayout>
   
-	<h1>Add a new thing</h1>
- 
+	<h1>Add a new tag</h1>
+
 	<form action="" method="POST" role="form">
 		
-		<@spring.bind "thing.text" />
+		<@spring.bind "tag.value" />
 		<div class="form-group">
-			<label for="${spring.status.expression}">Text</label>
+			<label for="${spring.status.expression}">Value</label>
 			<input name="${spring.status.expression}" value="${spring.status.value}" type="text" class="form-control" id="${spring.status.expression}" />
 			<#list spring.status.errorMessages as error> <div class="alert alert-danger">${error}</div><#else></#list>
 		</div>

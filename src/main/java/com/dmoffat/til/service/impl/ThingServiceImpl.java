@@ -32,7 +32,7 @@ public class ThingServiceImpl implements ThingService {
 
 	@Override
 	public List<Thing> list() {
-		return Utilities.makeList(thingRepository.findAll());
+		return Utilities.makeThingList(thingRepository.findAll());
 	}
 
 	@Override
