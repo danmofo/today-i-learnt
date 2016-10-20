@@ -2,6 +2,7 @@ package com.dmoffat.til.controller.admin;
 
 import javax.validation.Valid;
 
+import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,13 @@ public class ThingController {
 	@RequestMapping(method=RequestMethod.GET)
 	public String home() {
 		return "/admin/index";
+	}
+	
+	@RequestMapping(value="find", method=RequestMethod.GET)
+	public String find() {
+		logger.info("{}", thingService.findByDate(new DateTime(2016, 10, 19, 0, 0)));
+		
+		return "";
 	}
 	
 	@RequestMapping(value="add", method=RequestMethod.GET)

@@ -2,13 +2,13 @@ package com.dmoffat.til.service.impl;
 
 import java.util.List;
 
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dmoffat.til.model.Thing;
 import com.dmoffat.til.repository.ThingRepository;
 import com.dmoffat.til.service.ThingService;
-import com.dmoffat.til.utils.Utilities;
 
 @Service("thingService")
 public class ThingServiceImpl implements ThingService {
@@ -29,10 +29,15 @@ public class ThingServiceImpl implements ThingService {
 	public Thing update(Thing t) {
 		return thingRepository.save(t);
 	}
+	
+	@Override
+	public List<Thing> findByDate(DateTime time) {
+		return thingRepository.findAllByAddedBetween(time, time.plusDays(1).minusSeconds(1));
+	}
 
 	@Override
 	public List<Thing> list() {
-		return Utilities.makeThingList(thingRepository.findAll());
+		return thingRepository.findAll();
 	}
 
 	@Override
