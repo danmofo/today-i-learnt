@@ -5,6 +5,8 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -97,9 +99,9 @@ public class TagController {
 	}
 	
 	@RequestMapping(value="list", method=RequestMethod.GET)
-	public String listtags(Model m) {
+	public String listtags(Model m, @PageableDefault(size=3) Pageable p) {
 		
-		m.addAttribute("tags", tagService.list());
+		m.addAttribute("tags", tagService.list(p));
 
 		return "/admin/tag/list-tag";
 	}	

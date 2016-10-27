@@ -1,12 +1,12 @@
 package com.dmoffat.til.repository;
 
-import java.util.List;
-
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
 import com.dmoffat.til.model.Tag;
 
 
-public interface TagRepository extends CrudRepository<Tag, Long>{
-	public List<Tag> findAll();
+public interface TagRepository extends PagingAndSortingRepository<Tag, Long>{
+	public Page<Tag> findAll(Pageable p);
 }

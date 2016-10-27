@@ -25,6 +25,10 @@
 			<input name="${spring.status.expression}" value="${spring.status.value}" type="text" class="form-control" id="${spring.status.expression}" />
 			<#list spring.status.errorMessages as error> <div class="alert alert-danger">${error}</div> <br> <#else></#list>
 		</div>
+		<p>Current tag names... </p>
+		<#list thing.tags as tag>
+			<p>${tag.value}</p>
+		</#list>
 
 		<button type="submit" class="btn btn-lg btn-primary">Edit</button>
 	</form>

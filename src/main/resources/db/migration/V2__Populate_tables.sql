@@ -1,0 +1,32 @@
+insert into tag (`value`) values ("web");
+insert into tag (`value`) values ("guitar");
+insert into tag (`value`) values ("html");
+insert into tag (`value`) values ("css");
+insert into tag (`value`) values ("js");
+insert into tag (`value`) values ("java");
+insert into tag (`value`) values ("spring boot");
+insert into tag (`value`) values ("programming");
+insert into tag (`value`) values ("home");
+
+insert into thing (`text`, added) values ("How to play a song.", "2016-10-27 23:54:43");
+insert into thing (`text`, added) values ("How to cook a chicken.", "2015-02-03 15:00:05.00");
+insert into thing (`text`, added) values ("How to save energy.", "2014-04-01 13:00:05.00");
+insert into thing (`text`, added) values ("How to write SQL.", "2011-01-11 09:11:13.00");
+insert into thing (`text`, added) values ("How to use elasticsearch.", "2016-09-11 13:00:05.00");
+insert into thing (`text`, added) values ("How to use flyway", "2016-10-27 21:35:00.00");
+insert into thing (`text`, added) values ("How to build this website", "2016-10-27 21:11:00.00");
+
+insert into thing_tag (thing_id, tag_id) values (1, 2);
+insert into thing_tag (thing_id, tag_id) values (2, 9);
+insert into thing_tag (thing_id, tag_id) values (3, 9);
+insert into thing_tag (thing_id, tag_id) values (4, 1);
+insert into thing_tag (thing_id, tag_id) values (4, 8);
+insert into thing_tag (thing_id, tag_id) values (5, 8);
+insert into thing_tag (thing_id, tag_id) values (6, 8);
+insert into thing_tag (thing_id, tag_id) values (7, 1);
+insert into thing_tag (thing_id, tag_id) values (7, 3);
+insert into thing_tag (thing_id, tag_id) values (7, 4);
+insert into thing_tag (thing_id, tag_id) values (7, 5);
+insert into thing_tag (thing_id, tag_id) values (7, 6);
+insert into thing_tag (thing_id, tag_id) values (7, 7);
+insert into thing_tag (thing_id, tag_id) values (7, 8);

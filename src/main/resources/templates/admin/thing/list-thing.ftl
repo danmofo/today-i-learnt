@@ -1,5 +1,6 @@
 <#import "/layout/admin-layout.ftl" as layout>
 <#import "/spring.ftl" as spring />
+<#import "/common/utils.ftl" as utils />
 <@layout.adminLayout>
   
 <h1>Listing all things</h1>
@@ -15,12 +16,13 @@
 		</tr>
 	</thead>
 	<tbody>
-		<#list things as thing>
+		${things}
+		<#list things.getContent() as thing>
 			<tr>
 				<td>${thing.id}</td>
 				<td>${thing.text}</td>
 				<td>${thing.added}</td>
-				<td><#list thing.tags as tag> ${tag} <#else>No tags!</#list></td>
+				<td></td>
 				<td>
 					<a href="/admin/thing/edit/${thing.id}" class="btn btn-primary">Edit</a>	
 					<form action="/admin/thing/delete" method="POST">
@@ -30,11 +32,13 @@
 				</td>
 			</tr>
 		</#list>
+					
+		
 	</tbody>
 </table>
 <div class="pull-right">
+	<@utils.pagination page=things path="/admin/thing/list" />
 	<a href="/admin/thing/add" class="btn btn-primary btn-lg">Add new</a>
 </div>
 
 </@layout.adminLayout>
-

@@ -3,20 +3,21 @@ package com.dmoffat.til.repository;
 import java.util.List;
 
 import org.joda.time.DateTime;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.query.Param;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
 import com.dmoffat.til.model.Thing;
 
-
-public interface ThingRepository extends CrudRepository<Thing, Long>{
+public interface ThingRepository extends PagingAndSortingRepository<Thing, Long>{
 	
-	// @Query("from Thing t join fetch t.tags tags")
-	@Query("from Thing t left join fetch t.tags tags")
-	public List<Thing> findAll();
+	// Get all Things and their tags in one query 
+//	@Query("from Thing t left join fetch t.tags")
+//	public Page<Thing> findAllIncludingTags(Pageable p);
 	
-//	@Query("from Thing t left join fetch t.tags tags where t.added between :start and :end")
-	public List<Thing> findAllByAddedBetween(@Param("start") DateTime start, @Param("end") DateTime end);
+	public Page<Thing> findAll(Pageable p);
+	
+	public Page<Thing> findAllByAddedBetween(DateTime start, DateTime end, Pageable p);
+	public List<Thing> findAllByAddedBetweenOrderByAddedAsc(DateTime start, DateTime end);
 	
 }

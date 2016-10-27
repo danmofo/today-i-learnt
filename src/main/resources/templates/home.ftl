@@ -9,6 +9,7 @@
 			<tr>
 				<th>id</th>
 				<th>text</th>
+				<th>added</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -16,6 +17,7 @@
 				<tr>
 					<td>${thing.id}</td>
 					<td>${thing.text}</td>
+					<td>${thing.added.toDate()?datetime}</td>
 				</tr>
 			</#list>
 		</tbody>

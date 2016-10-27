@@ -3,9 +3,9 @@ package com.dmoffat.til.model;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,6 +19,8 @@ import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 /**
  * A Thing can be anything, from a fun fact, to a life lesson.
@@ -28,6 +30,7 @@ import org.joda.time.format.DateTimeFormat;
  */
 @Table(name = "thing")
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 public class Thing implements Serializable {
 
 	private static final long serialVersionUID = 2124605890978766184L;
@@ -40,17 +43,29 @@ public class Thing implements Serializable {
 	@Column(name = "added", insertable = false)
 	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
 	private DateTime added;
+	
+	@Column(name="updated")
+	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+	@LastModifiedDate
+	private DateTime updated;
 
 	@NotEmpty
 	private String text = "";
 
-	@ManyToMany(cascade={CascadeType.PERSIST, CascadeType.MERGE}, fetch=FetchType.LAZY)
+	@ManyToMany(fetch=FetchType.LAZY)
 	@JoinTable(name = "thing_tag", joinColumns = @JoinColumn(name = "thing_id"), inverseJoinColumns = @JoinColumn(name = "tag_id"))
 	private List<Tag> tags;
 
 	public Thing() {
 
 	}
+//	
+//	
+//	@PreUpdate
+//	private void onUpdate() {
+//		System.out.println("Pre update!");
+//		updated = DateTime.now();
+//	}
 
 	public Long getId() {
 		return id;
@@ -66,6 +81,14 @@ public class Thing implements Serializable {
 
 	public void setAdded(DateTime added) {
 		this.added = added;
+	}
+	
+	public DateTime getUpdated() {
+		return updated;
+	}
+
+	public void setUpdated(DateTime updated) {
+		this.updated = updated;
 	}
 
 	public String getText() {
@@ -91,10 +114,10 @@ public class Thing implements Serializable {
 		builder.append(id);
 		builder.append(", added=");
 		builder.append(DateTimeFormat.forStyle("MM").print(added));
+		builder.append(", updated=");
+		builder.append(DateTimeFormat.forStyle("MM").print(updated));
 		builder.append(", text=");
 		builder.append(text);
-		builder.append(", tags=");
-		builder.append(tags != null ? tags : "none");
 		builder.append("]");
 		return builder.toString();
 	}

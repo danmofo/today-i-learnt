@@ -1,5 +1,6 @@
 <#import "/layout/admin-layout.ftl" as layout>
 <#import "/spring.ftl" as spring />
+<#import "/common/utils.ftl" as utils />
 <@layout.adminLayout>
   
 <h1>Listing all tags</h1>
@@ -13,7 +14,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<#list tags as tag>
+		<#list tags.getContent() as tag>
 			<tr>
 				<td>${tag.id}</td>
 				<td>${tag.value}</td>
@@ -29,6 +30,7 @@
 	</tbody>
 </table>
 <div class="pull-right">
+	<@utils.pagination page=tags path="/admin/tag/list" />
 	<a href="/admin/tag/add" class="btn btn-primary btn-lg">Add new</a>
 </div>
 

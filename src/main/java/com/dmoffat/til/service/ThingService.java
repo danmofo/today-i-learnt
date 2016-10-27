@@ -5,6 +5,8 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.joda.time.DateTime;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import com.dmoffat.til.model.Thing;
 
@@ -12,8 +14,11 @@ import com.dmoffat.til.model.Thing;
 public interface ThingService {
 	void add(Thing t);
 	Thing update(Thing t);
-	List<Thing> list();
-	Thing findById(Long id);
+	Page<Thing> list(Pageable p);
+	
 	void delete(Long id);
-	List<Thing> findByDate(DateTime date);
+	
+	Thing findById(Long id);
+	Page<Thing> findByDate(DateTime date);
+	List<Thing> findByDateRange(DateTime start, DateTime end);
 }

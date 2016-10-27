@@ -1,14 +1,13 @@
 package com.dmoffat.til.service.impl;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.dmoffat.til.model.Tag;
 import com.dmoffat.til.repository.TagRepository;
 import com.dmoffat.til.service.TagService;
-import com.dmoffat.til.utils.Utilities;
 
 @Service("tagService")
 public class TagServiceImpl implements TagService {
@@ -31,8 +30,8 @@ public class TagServiceImpl implements TagService {
 	}
 
 	@Override
-	public List<Tag> list() {
-		return Utilities.makeTagList(tagRepository.findAll());
+	public Page<Tag> list(Pageable p) {
+		return tagRepository.findAll(p);
 	}
 
 	@Override

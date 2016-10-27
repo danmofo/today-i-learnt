@@ -6,6 +6,9 @@ import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -105,10 +108,11 @@ public class ThingController {
 	}
 	
 	@RequestMapping(value="list", method=RequestMethod.GET)
-	public String listThings(Model m) {
+	public String listThings(@PageableDefault(size=10) Pageable p, Model m) {
 		
-		m.addAttribute("things", thingService.list());
-		//
+		m.addAttribute("things", thingService.list(p));
+	
+
 		return "/admin/thing/list-thing";
 	}
 	
