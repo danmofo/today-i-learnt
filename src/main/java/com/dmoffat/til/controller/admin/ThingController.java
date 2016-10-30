@@ -45,7 +45,7 @@ public class ThingController {
 	
 	@RequestMapping(value="find", method=RequestMethod.GET)
 	public String find() {
-		logger.info("{}", thingService.findByDate(new DateTime(2016, 10, 19, 0, 0)));
+		logger.info("{}", thingService.findByDay(new DateTime(2016, 10, 19, 0, 0)));
 		
 		return "";
 	}

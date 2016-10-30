@@ -11,7 +11,7 @@ import javax.persistence.Table;
 import org.hibernate.validator.constraints.NotEmpty;
 
 /**
- * A Thing can be anything, from a fun fact, to a life lesson. 
+ * A Tag is a word that describes a thing 
  * @author danielmoffat
  *
  */

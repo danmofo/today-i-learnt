@@ -37,3 +37,16 @@
 		</#if>
 	</ul>
 </#macro>
+
+<#-- 
+	Display a month inside a datetime object as text
+
+	Params
+	---
+
+	- datetime, A DateTime object
+
+-->
+<#macro monthName datetime>
+	${datetime.monthOfYear().getAsText()}
+</#macro>

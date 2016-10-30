@@ -12,7 +12,7 @@
 
 		<div class="collapse navbar-collapse navbar-ex1-collapse">
 			<ul class="nav navbar-nav">
-				<li><a href="/admin/">Admin</a></li>
+				<li><a href="/calendar/">This month</a></li>
 				<#-- <li  class="active"><a href="#"></a></li> -->
 			</ul>
 		</div>
